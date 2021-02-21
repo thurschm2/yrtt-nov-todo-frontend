@@ -1,11 +1,11 @@
 import './Task.css';
 
-function Task(props) {
-    console.log(props);
+function Task({complete, text}) {
+    // console.log(props);
   return (
-    <li className={`task ${props.complete ? 'task--complete': ''}`}>
-        <p className="task__text">This is a task that needs to be done</p>
-        {props.complete === false && <button className="button">Complete</button>}
+    <li className={`task ${complete ? 'task--complete': ''}`}>
+        <p className="task__text"> {text} </p>
+        {complete === false && <button className="button">Complete</button>}
         <button className="button">Delete</button>
     </li>   
   );
