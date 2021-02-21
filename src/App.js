@@ -11,19 +11,25 @@ function App() {
     {text:'task 3',completed: true, date:'2021-01-05', id: '003'},
     {text:'task 4',completed: false, date:'2020-12-17', id: '004'},
     {text:'task 5',completed: false, date:'2021-02-10', id: '005'},
-    {text:'task 6',completed: false, date:'2021-02-10', id: '005'}
+    {text:'task 6',completed: false, date:'2021-02-10', id: '006'}
   ])
+
+  const deleteTask = id => {
+    const updatedTasks = tasks.filter (task => task.id !== id)
+    setTasks(updatedTasks)
+  }
   const incompleteTasks = tasks.filter(task =>!task.completed)
   const completeTasks = tasks.filter(task => task.completed)
    
   return (
     <div className="App">
       {/* console.log(incompleteTasks.length) */}
-      <Header taskCount={incompleteTasks.length}  />  
+        
+      <Header taskCount={ incompleteTasks.length }/>
       <main className="all-tasks">
 
-        <TaskList tasks={incompleteTasks} status='incomplete'/>
-        <TaskList tasks={completeTasks} status='complete'/>
+        <TaskList deleteTask= {deleteTask} tasks={incompleteTasks} status='incomplete'/>
+        <TaskList deleteTask= {deleteTask} tasks={completeTasks} status='complete'/>
         
           {/* <section className="incomplete-tasks">
               <h2 className="heading">Tasks to do:</h2>
