@@ -18,6 +18,16 @@ function App() {
     const updatedTasks = tasks.filter (task => task.id !== id)
     setTasks(updatedTasks)
   }
+  const addTask = text => {
+    const newTask = {
+      text: text,
+      completed: false,
+      date: '2021-09-09',
+      id: "010"
+    }
+    const updatedTasks = [...tasks,newTask]
+    setTasks(updatedTasks)
+  }
   const incompleteTasks = tasks.filter(task =>!task.completed)
   const completeTasks = tasks.filter(task => task.completed)
    
@@ -25,7 +35,7 @@ function App() {
     <div className="App">
       {/* console.log(incompleteTasks.length) */}
         
-      <Header taskCount={ incompleteTasks.length }/>
+      <Header taskCount={ incompleteTasks.length } addTask= { addTask }/>
       <main className="all-tasks">
 
         <TaskList deleteTask= {deleteTask} tasks={incompleteTasks} status='incomplete'/>
